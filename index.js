@@ -2,28 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { DatePicker, message } from 'antd';
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      date: '',
-    };
-  }
-  handleChange(date) {
-    message.info('您选择的日期是: ' + date.toString());
-    this.setState({ date });
-  }
-  render() {
-    return (
-      <div style={{ width: 400, margin: '100px auto' }}>
-        <DatePicker onChange={value => this.handleChange(value)} />
-        <div style={{ marginTop: 20 }}>当前日期：{this.state.date.toString()}</div>
-      </div>
-    );
-  }
-}
-
-
 // 加载单个星星
 class Star extends React.Component{
   constructor(props){
@@ -77,12 +55,13 @@ class TechRow extends React.Component{
 class LessonTable extends React.Component{
   constructor(props){
     super(props);
+    this.state = {"data": this.props.data};
   }
 
   render(){
     var rows = [];
-    [1,2,3,4,5].forEach(function(cell){
-      rows.push(<TechRow key={cell} jineng={"jineng"+cell} stars={cell+""}/>);
+    this.state.data.skills.forEach(function(cell){
+      rows.push(<TechRow key={cell.name} jineng={cell.name} stars={cell.judgement}/>);
     });
     return (
       <table>
@@ -101,6 +80,7 @@ class LessonTable extends React.Component{
 class LessonOverViewTable extends React.Component{
   constructor(props){
     super(props);
+    this.state = {"exam_data": this.props.exam_data};
   }
 
   render(){
@@ -108,14 +88,14 @@ class LessonOverViewTable extends React.Component{
       <table>
         <thead>
           <tr>
-            <th>数学</th>
+            <th>{this.state.exam_data.category+" "+this.state.exam_data.exam}</th>
             <th>建议意见</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td><LessonTable /></td>
-            <td>参考建议balabala</td>
+            <td><LessonTable data={this.state.exam_data}/></td>
+            <td>{this.state.exam_data.comment}</td>
           </tr>
         </tbody>
       </table>
@@ -123,6 +103,75 @@ class LessonOverViewTable extends React.Component{
   }
 }
 
+
+class AllExamsContent extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {"exams_data": this.props.data};
+  }
+
+  render(){
+    var rows = [];
+    this.state.exams_data.forEach(function(exam_data){
+      rows.push(<LessonOverViewTable key={exam_data.exam} exam_data={exam_data} />);
+    });
+
+    return(
+      <div>
+        {rows}
+      </div>
+    );
+  }
+}
+
+var exams_data = [
+  {
+      "category": "Math",
+      "exam": "exam1",
+      "skills": [
+          {
+              "name": "jineng1",
+              "judgement": "2"
+          },
+          {
+              "name": "jineng2",
+              "judgement": "4"
+          },
+          {
+              "name": "jineng3",
+              "judgement": "5"
+          },
+          {
+              "name": "jineng4",
+              "judgement": "3"
+          }
+      ],
+      "comment": "work much more hard!"
+  },
+  {
+      "category": "English",
+      "exam": "exam2",
+      "skills": [
+          {
+              "name": "jineng10",
+              "judgement": "5"
+          },
+          {
+              "name": "jineng12",
+              "judgement": "4"
+          },
+          {
+              "name": "jineng23",
+              "judgement": "5"
+          },
+          {
+              "name": "jineng43",
+              "judgement": "3"
+          }
+      ],
+      "comment": "继续努力，继续努力，还有进步的空间，还有上升的余地！不要放弃!"
+  }
+]
 // class ProductRow extends React.Component {
 //   render() {
 //     var name = this.props.product.stocked ?
@@ -205,6 +254,5 @@ class LessonOverViewTable extends React.Component{
 //   document.getElementById('overview_chart')
 // );
 
-ReactDOM.render(<App />, document.getElementById('root'));
 ReactDOM.render(<h1 style={{ width: 400, margin: '100px auto'}}>Reports</h1>, document.getElementById('title'));
-ReactDOM.render(<LessonOverViewTable />, document.getElementById('lesson_details'));
+ReactDOM.render(<AllExamsContent data={exams_data}/>, document.getElementById('lesson_details'));
