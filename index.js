@@ -2,6 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { DatePicker, message } from 'antd';
 
+// 读取试卷json数据
+var exams_data = require('./exams.json');
+
 // 加载单个星星
 class Star extends React.Component{
   constructor(props){
@@ -124,135 +127,6 @@ class AllExamsContent extends React.Component {
   }
 }
 
-var exams_data = [
-  {
-      "category": "Math",
-      "exam": "exam1",
-      "skills": [
-          {
-              "name": "jineng1",
-              "judgement": "2"
-          },
-          {
-              "name": "jineng2",
-              "judgement": "4"
-          },
-          {
-              "name": "jineng3",
-              "judgement": "5"
-          },
-          {
-              "name": "jineng4",
-              "judgement": "3"
-          }
-      ],
-      "comment": "work much more hard!"
-  },
-  {
-      "category": "English",
-      "exam": "exam2",
-      "skills": [
-          {
-              "name": "jineng10",
-              "judgement": "5"
-          },
-          {
-              "name": "jineng12",
-              "judgement": "4"
-          },
-          {
-              "name": "jineng23",
-              "judgement": "5"
-          },
-          {
-              "name": "jineng43",
-              "judgement": "3"
-          }
-      ],
-      "comment": "继续努力，继续努力，还有进步的空间，还有上升的余地！不要放弃!"
-  }
-]
-// class ProductRow extends React.Component {
-//   render() {
-//     var name = this.props.product.stocked ?
-//       this.props.product.name :
-//       <span style={{color: 'red'}}>
-//         {this.props.product.name}
-//       </span>;
-//     return (
-//       <tr>
-//         <td>{name}</td>
-//         <td>{this.props.product.price}</td>
-//       </tr>
-//     );
-//   }
-// }
-//
-// class ProductTable extends React.Component {
-//   render() {
-//     var rows = [];
-//     var lastCategory = null;
-//     this.props.products.forEach(function(product) {
-//       if (product.category !== lastCategory) {
-//         rows.push(<ProductCategoryRow category={product.category} key={product.category} />);
-//       }
-//       rows.push(<ProductRow product={product} key={product.name} />);
-//       lastCategory = product.category;
-//     });
-//     return (
-//       <table>
-//         <thead>
-//           <tr>
-//             <th>Name</th>
-//             <th>Price</th>
-//           </tr>
-//         </thead>
-//         <tbody>{rows}</tbody>
-//       </table>
-//     );
-//   }
-// }
-//
-// class SearchBar extends React.Component {
-//   render() {
-//     return (
-//       <form>
-//         <input type="text" placeholder="Search..." />
-//         <p>
-//           <input type="checkbox" />
-//           {' '}
-//           Only show products in stock
-//         </p>
-//       </form>
-//     );
-//   }
-// }
-//
-// class FilterableProductTable extends React.Component {
-//   render() {
-//     return (
-//       <div>
-//         <SearchBar />
-//         <ProductTable products={this.props.products} />
-//       </div>
-//     );
-//   }
-// }
-//
-//
-// var PRODUCTS = [
-//   {category: 'Sporting Goods', price: '$49.99', stocked: true, name: 'Football'},
-//   {category: 'Sporting Goods', price: '$9.99', stocked: true, name: 'Baseball'},
-//   {category: 'Sporting Goods', price: '$29.99', stocked: false, name: 'Basketball'},
-//   {category: 'Electronics', price: '$99.99', stocked: true, name: 'iPod Touch'},
-//   {category: 'Electronics', price: '$399.99', stocked: false, name: 'iPhone 5'},
-//   {category: 'Electronics', price: '$199.99', stocked: true, name: 'Nexus 7'}
-// ];
-//
-// ReactDOM.render(
-//   <FilterableProductTable products={PRODUCTS} />,
-//   document.getElementById('overview_chart')
-// );
 
-ReactDOM.render(<h1 style={{ width: 400, margin: '100px auto'}}>Reports</h1>, document.getElementById('title'));
+ReactDOM.render(<h1 style={{ width: 300, margin: '100px auto'}}>Reports</h1>, document.getElementById('title'));
 ReactDOM.render(<AllExamsContent data={exams_data}/>, document.getElementById('lesson_details'));
