@@ -1,10 +1,49 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { DatePicker, message } from 'antd';
+import { DatePicker, message, Icon, BackTop } from 'antd';
 
+const ReactHighcharts = require('react-highcharts');
 // 读取试卷json数据
-var exams_data = require('./exams.json');
-
+var exams_data = require('./data/exams.json');
+const chart_config = {
+  /* HighchartsConfig */
+        chart: {
+            polar: true,
+            type: 'line'
+        },
+        title: {
+            text: '综合',
+            x: -80
+        },
+        pane: {
+            size: '80%'
+        },
+        xAxis: {
+            categories: ['数学', '语文', '英语', '综合'],
+            tickmarkPlacement: 'on',
+            lineWidth: 0
+        },
+        yAxis: {
+            gridLineInterpolation: 'polygon',
+            lineWidth: 0,
+            min: 0
+        },
+        tooltip: {
+            shared: true,
+            pointFormat: '<span style="color:{series.color}">{series.name}: <b>${point.y:,.0f}</b><br/>'
+        },
+        legend: {
+            align: 'right',
+            verticalAlign: 'top',
+            y: 70,
+            layout: 'vertical'
+        },
+        series: [{
+            name: 'Allocated Budget',
+            data: [80, 19, 50, 90],
+            pointPlacement: 'on'
+        }]
+};
 // 加载单个星星
 class Star extends React.Component{
   constructor(props){
@@ -127,6 +166,9 @@ class AllExamsContent extends React.Component {
   }
 }
 
-
+ReactDOM.render(<Icon type="exclamation-circle" />, document.getElementById('info'));
 ReactDOM.render(<h1 style={{ width: 300, margin: '100px auto'}}>Reports</h1>, document.getElementById('title'));
 ReactDOM.render(<AllExamsContent data={exams_data}/>, document.getElementById('lesson_details'));
+ReactDOM.render(<BackTop />, document.getElementById('backtop')
+);
+ReactDOM.render(<ReactHighcharts config={chart_config}></ReactHighcharts>, document.getElementById('container'));
