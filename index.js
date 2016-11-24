@@ -11,48 +11,107 @@ HighchartsMore(ReactHighcharts.Highcharts);
 var HighchartsExporting = require('highcharts-exporting');
 HighchartsExporting(ReactHighcharts.Highcharts);
 var Highlight = require('react-highlight');
+var sg = require('highcharts-solid-gauge');
 
 // 读取试卷json数据
 var exams_data = require('./data/exams.json');
-const chart_config = {
-  /* HighchartsConfig */
-        chart: {
-            polar: true,
-            type: 'line'
-        },
-        title: {
-            text: '综合',
-            x: -80
-        },
-        pane: {
-            size: '80%'
-        },
-        xAxis: {
-            categories: ['数学', '语文', '英语', '综合'],
-            tickmarkPlacement: 'on',
-            lineWidth: 0
-        },
-        yAxis: {
-            gridLineInterpolation: 'polygon',
-            lineWidth: 0,
-            min: 0
-        },
-        tooltip: {
-            shared: true,
-            pointFormat: '<span style="color:{series.color}">{series.name}: <b>${point.y:,.0f}</b><br/>'
-        },
-        legend: {
-            align: 'right',
-            verticalAlign: 'top',
-            y: 70,
-            layout: 'vertical'
-        },
-        series: [{
-            name: 'scores',
-            data: [80, 19, 50, 90],
-            pointPlacement: 'on'
-        }]
-};
+var chart_config = require('./data/chart_config.json');
+// var chart_config = require('./data/chart2.json');
+// var chart_config = {
+//         chart: {
+//             type: 'solidgauge',
+//             marginTop: 50
+//         },
+//         credits: {
+//             text: 'hcharts.cn',
+//             href: 'http://www.hcharts.cn'
+//         },
+//         title: {
+//             text: 'Activity',
+//             style: {
+//                 fontSize: '24px'
+//             }
+//         },
+//         tooltip: {
+//             borderWidth: 0,
+//             backgroundColor: 'none',
+//             shadow: false,
+//             style: {
+//                 fontSize: '16px'
+//             },
+//             pointFormat: '{series.name}<br><span style="font-size:2em; color: {point.color}; font-weight: bold">{point.y}%</span>',
+//             positioner: function (labelWidth, labelHeight) {
+//                 return {
+//                     x: 200 - labelWidth / 2,
+//                     y: 180
+//                 };
+//             }
+//         },
+//         pane: {
+//             startAngle: 0,
+//             endAngle: 360,
+//             background: [{ // Track for Move
+//                 outerRadius: '112%',
+//                 innerRadius: '88%',
+//                 backgroundColor: 'blue',
+//                 borderWidth: 0
+//             }, { // Track for Exercise
+//                 outerRadius: '87%',
+//                 innerRadius: '63%',
+//                 backgroundColor: 'green',
+//                 borderWidth: 0
+//             }, { // Track for Stand
+//                 outerRadius: '62%',
+//                 innerRadius: '38%',
+//                 backgroundColor: 'yellow',
+//                 borderWidth: 0
+//             }]
+//         },
+//         yAxis: {
+//             min: 0,
+//             max: 100,
+//             lineWidth: 0,
+//             tickPositions: []
+//         },
+//         plotOptions: {
+//             solidgauge: {
+//                 borderWidth: '34px',
+//                 dataLabels: {
+//                     enabled: false
+//                 },
+//                 linecap: 'round',
+//                 stickyTracking: false
+//             }
+//         },
+//         series: [{
+//             name: 'Move',
+//             // borderColor: Highcharts.getOptions().colors[0],
+//             data: [{
+//                 color: 'silver',
+//                 radius: '100%',
+//                 innerRadius: '100%',
+//                 y: 90
+//             }]
+//         }, {
+//             name: 'Exercise',
+//             borderColor: 'black',
+//             data: [{
+//                 color: 'black',
+//                 radius: '75%',
+//                 innerRadius: '75%',
+//                 y: 65
+//             }]
+//         }, {
+//             name: 'Stand',
+//             borderColor: 'red',
+//             data: [{
+//                 color: 'red',
+//                 radius: '50%',
+//                 innerRadius: '50%',
+//                 y: 50
+//             }]
+//         }]
+// };
 
 // 加载单个星星
 class Star extends React.Component{
