@@ -3,6 +3,15 @@ import ReactDOM from 'react-dom';
 import { DatePicker, message, Icon, BackTop } from 'antd';
 
 const ReactHighcharts = require('react-highcharts');
+// Note that Highcharts has to be in the codebase already
+// Highcharts more
+var HighchartsMore = require('highcharts-more');
+HighchartsMore(ReactHighcharts.Highcharts);
+// Highcharts exporting
+var HighchartsExporting = require('highcharts-exporting');
+HighchartsExporting(ReactHighcharts.Highcharts);
+var Highlight = require('react-highlight');
+
 // 读取试卷json数据
 var exams_data = require('./data/exams.json');
 const chart_config = {
@@ -39,11 +48,12 @@ const chart_config = {
             layout: 'vertical'
         },
         series: [{
-            name: 'Allocated Budget',
+            name: 'scores',
             data: [80, 19, 50, 90],
             pointPlacement: 'on'
         }]
 };
+
 // 加载单个星星
 class Star extends React.Component{
   constructor(props){
@@ -166,9 +176,8 @@ class AllExamsContent extends React.Component {
   }
 }
 
+ReactDOM.render(React.createElement(ReactHighcharts, { config: chart_config }), document.getElementById('container'));
 ReactDOM.render(<Icon type="exclamation-circle" />, document.getElementById('info'));
 ReactDOM.render(<h1 style={{ width: 300, margin: '100px auto'}}>Reports</h1>, document.getElementById('title'));
 ReactDOM.render(<AllExamsContent data={exams_data}/>, document.getElementById('lesson_details'));
-ReactDOM.render(<BackTop />, document.getElementById('backtop')
-);
-ReactDOM.render(<ReactHighcharts config={chart_config}></ReactHighcharts>, document.getElementById('container'));
+ReactDOM.render(<BackTop />, document.getElementById('backtop'));
