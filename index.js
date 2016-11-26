@@ -149,7 +149,7 @@ class AllExamsContent extends React.Component {
 
 ReactDOM.render(<ReactHighcharts config={overview_config} />, document.getElementById('overview_chart'));
 ReactDOM.render(<ReactHighcharts config={config1} />, document.getElementById('single_exam_container1'));
-ReactDOM.render(<ReactHighcharts config={config2} />, document.getElementById('single_exam_container2'));
+// ReactDOM.render(<ReactHighcharts config={config2} />, document.getElementById('single_exam_container2'));
 ReactDOM.render(<Icon type="exclamation-circle" />, document.getElementById('info'));
 ReactDOM.render(<h1 style={{ width: 300, margin: '100px auto'}}>Reports</h1>, document.getElementById('title'));
 ReactDOM.render(<AllExamsContent data={exams_data}/>, document.getElementById('lesson_details'));

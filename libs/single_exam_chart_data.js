@@ -7,7 +7,14 @@ function get_single_exam_chart_view_data(exam_name, exam_score){
     var origin_data = {
             chart: {
                 type: 'solidgauge',
-                marginTop: 50
+                marginTop: 50,
+                // 图表一加载完就显示tiiltip
+                events: {
+                    load: function(){
+                        var p = this.series[0].points[0];
+                        this.tooltip.refresh(p);
+                    }
+                }
             },
 
             title: {
@@ -19,7 +26,7 @@ function get_single_exam_chart_view_data(exam_name, exam_score){
 
             tooltip: {
                 animation: true,
-                hideDelay: 5000,
+                hideDelay: 100000,
                 borderWidth: 0,
                 backgroundColor: 'none',
                 shadow: false,
@@ -32,7 +39,8 @@ function get_single_exam_chart_view_data(exam_name, exam_score){
                         x: 300 - labelWidth / 2,
                         y: 180
                     };
-                }
+                },
+                enabled: true
             },
 
             pane: {
@@ -60,12 +68,16 @@ function get_single_exam_chart_view_data(exam_name, exam_score){
                         enabled: false
                     },
                     linecap: 'round',
-                    stickyTracking: false
+                    stickyTracking: true,
+                    enableMouseTracking: true,
+                    events:{
+                      show: true
+                    }
                 }
             },
 
             series: [{
-                name: 'Scores',
+                name: '得分',
                 borderColor: ReactHighcharts.Highcharts.getOptions().colors[0],
                 data: [{
                     color: ReactHighcharts.Highcharts.getOptions().colors[0],
