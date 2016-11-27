@@ -26,7 +26,7 @@ function get_single_exam_chart_view_data(exam_name, exam_score){
 
             tooltip: {
                 animation: true,
-                hideDelay: 100000,
+                hideDelay: 1000000,
                 borderWidth: 0,
                 backgroundColor: 'none',
                 shadow: false,

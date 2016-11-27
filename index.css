@@ -1,0 +1,11 @@
+
+html, body, #root {
+  height: 100%;
+  text-align: center;
+}
+#title_content {
+    background-color:black;
+    color:white;
+    text-align:center;
+    padding:5px;
+}

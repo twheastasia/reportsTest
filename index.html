@@ -3,17 +3,28 @@
 <head>
   <meta charset="UTF-8">
   <title>Demo</title>
-  <link rel="stylesheet" href="index.css" />
+  <link rel="stylesheet" href="./index.css" />
 </head>
 <body>
-  <div id="title"></div>
-  <div id="overview_title"></div>
-  <div id="overview_chart" style="min-width: 400px; max-width: 600px; height: 400px; margin: 0 auto"></div>
-  <div id="single_exam_container1" style="min-width: 400px; max-width: 600px; height: 400px; margin: auto"></div>
-  <div id="single_exam_container2" style="min-width: 400px; max-width: 600px; height: 400px; margin: auto"></div>
+  <br/><br/><br/>
+  <div id="title" style="text-align:center;font-size:40px"></div>
+  <br/><br/><br/>
+  <!-- <div id="overview_title"></div>
+  <div id="overview_chart" style="min-width: 400px; max-width: 600px; height: 400px; margin: 0 auto"></div> -->
+  <div id="single_exam_chart_view" >
+    <div id="single_exam_container1" style="min-width: 400px; max-width: 600px; height: 400px; margin: auto;"></div>
+    <div id="single_exam_rank" style="text-align:center;font-size:30px;"></div>
+  </div>
+  <br/><br/><br/><br/>
+  <!-- <div id="single_exam_container2" style="min-width: 400px; max-width: 600px; height: 400px; margin: auto"></div> -->
   <div id="info"></div>
-  <div id="lesson_details"></div>
-  <div id="root"></div>
+  <div id="lesson_details" style="min-width: 600px; max-width: 800px;margin: auto"></div>
+  <!-- <div id="root"></div> -->
+  <div >
+    <div id="qrcode" style="width:128px; height:128px;margin: auto"></div>
+    <br/>
+    <div id="qrcode_tip" style="text-align:center;font-size:18px"></div>
+  </div>
 
   <div id="backtop"></div>
 

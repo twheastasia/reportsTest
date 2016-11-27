@@ -12,6 +12,10 @@ var Highlight = require('react-highlight');
 var HighchartsSolidGauge = require('highcharts-solid-gauge');
 HighchartsSolidGauge(ReactHighcharts.Highcharts);
 
+// import qrcode
+var QRCode = require('qrcode.react');
+
+
 var singleExamData = require('./libs/single_exam_chart_data.js');
 var overviewExamData = require('./libs/overview_exam_chart_data.js');
 
@@ -20,10 +24,13 @@ var exams_data = require('./data/exams.json');
 
 // var chart_config = require('./data/chart_config.json');
 // var chart_config = require('./data/chart2.json');
-var config1 = singleExamData.get_single_exam_chart_view_data('Math', 85);
+var config1 = singleExamData.get_single_exam_chart_view_data('数学xx试卷', 85);
 var config2 = singleExamData.get_single_exam_chart_view_data('English', 75);
 var overview_config = overviewExamData.get_overview_exam_chart_data('综合成绩', ['数学','语文','英语','物理'], [90, 80, 70, 60]);
-
+var exam_title = "数学xx考试试卷报告--xx学生";
+var exam_rank_info = "你真棒!排名就不告诉你了。";
+var qrcode_url = "http://www.alo7.com";
+var qrcode_tip = "扫描上面的二维码，分享到手机上。";
 
 // 加载单个星星
 class Star extends React.Component{
@@ -137,6 +144,8 @@ class AllExamsContent extends React.Component {
     var rows = [];
     this.state.exams_data.forEach(function(exam_data){
       rows.push(<LessonOverViewTable key={exam_data.exam} exam_data={exam_data} />);
+      rows.push(<br/>);
+      rows.push(<br/>);
     });
 
     return(
@@ -147,10 +156,13 @@ class AllExamsContent extends React.Component {
   }
 }
 
-ReactDOM.render(<ReactHighcharts config={overview_config} />, document.getElementById('overview_chart'));
+// ReactDOM.render(<ReactHighcharts config={overview_config} />, document.getElementById('overview_chart'));
 ReactDOM.render(<ReactHighcharts config={config1} />, document.getElementById('single_exam_container1'));
 // ReactDOM.render(<ReactHighcharts config={config2} />, document.getElementById('single_exam_container2'));
 ReactDOM.render(<Icon type="exclamation-circle" />, document.getElementById('info'));
-ReactDOM.render(<h1 style={{ width: 300, margin: '100px auto'}}>Reports</h1>, document.getElementById('title'));
+ReactDOM.render(<strong>{exam_title}</strong>, document.getElementById('title'));
 ReactDOM.render(<AllExamsContent data={exams_data}/>, document.getElementById('lesson_details'));
 ReactDOM.render(<BackTop />, document.getElementById('backtop'));
+ReactDOM.render(<p>{exam_rank_info}</p>, document.getElementById('single_exam_rank'));
+ReactDOM.render(<QRCode value={qrcode_url} />, document.getElementById('qrcode'));
+ReactDOM.render(<p>{qrcode_tip}</p>, document.getElementById('qrcode_tip'));
