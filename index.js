@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { DatePicker, message, Icon, BackTop } from 'antd';
+import { DatePicker, message, Icon, BackTop, Spin } from 'antd';
 
 const ReactHighcharts = require('react-highcharts');
 // Highcharts more
@@ -144,10 +144,7 @@ class AllExamsContent extends React.Component {
     var rows = [];
     this.state.exams_data.forEach(function(exam_data){
       rows.push(<LessonOverViewTable key={exam_data.exam} exam_data={exam_data} />);
-      rows.push(<br/>);
-      rows.push(<br/>);
     });
-
     return(
       <div>
         {rows}
@@ -156,6 +153,7 @@ class AllExamsContent extends React.Component {
   }
 }
 
+ReactDOM.render(<p></p>, document.getElementById('loading'));
 // ReactDOM.render(<ReactHighcharts config={overview_config} />, document.getElementById('overview_chart'));
 ReactDOM.render(<ReactHighcharts config={config1} />, document.getElementById('single_exam_container1'));
 // ReactDOM.render(<ReactHighcharts config={config2} />, document.getElementById('single_exam_container2'));
